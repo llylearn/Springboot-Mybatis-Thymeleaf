@@ -1,0 +1,9 @@
+/*mainPage.html elements*/
+/*boxes for displaying comments
+*/
+.materialboxed{
+    height: 400px;
+    width: 700px;
+    color: white;
+    font-size: 25px;
+}

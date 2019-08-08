@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body{
+        padding: 0;
+        border: 0;
+    }
+</style>
+<body>
+    <div th:replace="commons/navAndFooter::nav"></div>
+    <div class="parallax-container">
+        <div class="parallax"><img src="img/milkyWay2.jpg" ></div>
+    </div>
+<!--    显示最多6条评论-->
+    <div class="section white">
+        <div class="container" style="height: 100%; width: 100%">
+            <div class="row modal-content col s12">
+                <div class=" col s12 carousel" >
+                    <a id="testdiv" class="carousel-item center-align" th:each="comment:${comments}"  href="#one" style="width: 700px;height: 400px;">
+                        <div class="teal lighten-2 materialboxed" >
+                            <h3 th:text="${comment.username}"></h3>
+                            <p th:text="${comment.topic}"></p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="parallax-container">
+        <div class="parallax"><img src="img/snowMountain.jpg" style="margin-left: 80px"></div>
+    </div>
+<!--    添加评论-->
+    <div class="section white">
+        <div class="container">
+            <div class="row modal-content">
+                <div class="col s12 center-align">
+                    <h4>留言板</h4>
+                    <form th:action="@{/submitComm}" method="post">
+                        <div class="col s10" style="margin-left: 100px">
+                            <div class="input-field col s12">
+                                <textarea name="topic" id="topic" class="materialize-textarea"></textarea>
+                                <label for="topic">50字以内</label>
+                            </div>
+                        </div>
+                            <button style="margin-left: 10px" class="btn waves-effect waves-light" type="submit" name="action">
+                                提交
+                            </button>
+                            <button  style="margin-left: 40px" class="btn waves-effect waves-light" type="reset">
+                                清除
+                            </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="parallax-container">
+        <div class="parallax"><img src="img/snowland.jpg" style="margin-left: 80px"></div>
+    </div>
+<!--    删除评论-->
+    <div class="section white">
+        <div class="container">
+            <div class="row modal-content center-align">
+<!--                删除评论-->
+                <div class="input-field col s6">
+                    <h4>个人评论</h4>
+                    <form th:action="@{/deleteComment}" method="post" >
+                            <div class="row s8">
+                                <select name="topic">
+                                    <option value="" disabled selected>Choose your comment</option>
+                                    <option th:each="personalC:${personalComments}" th:text="${personalC.topic}"></option>
+                                </select>
+                                <button id="delete" class="btn waves-effect waves-light" type="submit" name="action">
+                                    删除
+                                </button>
+                            </div>
+                    </form>
+                </div>
+<!--                修改密码-->
+                <p th:text="${modifyErr}" th:if="${not #strings.isEmpty(modifyErr)}" style="position: absolute;margin: -60px 0 0 760px;color: white"></p>
+                <div class="col s5 offset-l1" style="margin-top: -20px">
+                    <form th:action="@{/modifyPsw}" method="post">
+                        <h4>修改密码</h4>
+                        <div class="input-field row s8">
+                            <input name="oldPsw" id="old_password" type="text" class="validate">
+                            <label for="old_password">Old Password</label>
+                        </div>
+                        <div class="input-field row s4">
+                            <input name="newPsw" id="new_password" type="text" class="validate">
+                            <label for="new_password">New Password</label>
+                        </div>
+                        <button class="btn waves-effect waves-light" type="submit">
+                            修改
+                        </button>
+                        <button class="btn waves-effect waves-light" type="reset">
+                            清除
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="parallax-container">
+        <div class="parallax"><img src="img/waterfall.jpg" style="margin-left: 80px"></div>
+    </div>
+    <div th:replace="commons/navAndFooter::footer"></div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.parallax');
+        var instances = M.Parallax.init(elems);
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems);
+        M.updateTextFields();
+        var elems = document.querySelectorAll('.tap-target');
+        var instances = M.TapTarget.init(elems);
+        var elems = document.querySelectorAll('.carousel');
+        var instances = M.Carousel.init(elems,dist=-10);
+        var elems = document.querySelectorAll('.materialboxed');
+        var instances = M.Materialbox.init(elems);
+        var elems = document.querySelectorAll('select');
+        var instances = M.FormSelect.init(elems);
+    });
+
+</script>
+<script type="text/javascript" src="js/materialize.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="css/materialize.css" rel="stylesheet" type="text/css"></link>
+<link href="css/customize.css" rel="stylesheet" type="text/css"></link>
+</html>

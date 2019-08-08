@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--nav bar-->
+    <nav th:fragment="nav">
+        <div class="nav-wrapper teal lighten-2">
+            <a href="#" class="brand-logo center">Spring Boot Test</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down" >
+                <li th:if="${ 'true'==loginStatu}"><a href="/index.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+<!--footer-->
+    <footer class="page-footer teal lighten-2" th:fragment="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Development Duration</h5>
+                <p class="grey-text text-lighten-4">Aug 1 to Aug 8</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Libraries and Tools</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">Materialize</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Spring Boot</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Thymeleaf</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Mybatis</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">IntelliJ</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2019 Copyright Liyuan Li
+            <!--            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>-->
+        </div>
+    </div>
+</footer>
+</body>
+</html>

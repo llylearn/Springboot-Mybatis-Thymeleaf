@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<!--nav-->
+<div th:replace="commons/navAndFooter::nav"></div>
+<!--content-->
+<div class="parallax-container">
+    <div class="parallax"><img src="img/milkyWay2.jpg" ></div>
+</div>
+<div class="section white">
+    <div class="container">
+        <!-- login Content goes here -->
+        <div class="row">
+        <form class="col s12 " action="index.html" th:action="@{/login}" method="post">
+            <div class="row">
+                <div class="input-field col s4 offset-l2" >
+                    <i class="material-icons prefix">account_circle</i>
+                    <input name="username" id="username" type="text" class="validate">
+                    <label for="username" th:text="#{index.username}">Username</label>
+                </div>
+                <div class="input-field col s4">
+                    <i class="material-icons prefix">lock</i>
+                    <input name="password" id="password" type="password" class="validate">
+                    <label for="password" th:text="#{index.password}">Password</label>
+                </div>
+            </div>
+            <button style="margin-left: 380px;" class="btn waves-effect waves-light" type="submit" name="action" th:text="#{index.submit}">
+                Submit
+            </button>
+            <button style="margin-left: 90px;" class="btn waves-effect waves-light" type="reset" th:text="#{index.clean}">
+                Clean
+            </button>
+            <p style="color: white;position:absolute;margin:-200px 0 0 380px" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}">wtf</p>
+        </form>
+    </div>
+    </div>
+</div>
+<div class="parallax-container">
+    <div class="parallax"><img src="img/snowMountain.jpg" style="margin-left: 80px"></div>
+
+</div>
+<!--footer-->
+<div th:replace="commons/navAndFooter::footer"></div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.parallax');
+        var instances = M.Parallax.init(elems);
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems);
+        M.updateTextFields();
+    });
+
+</script>
+<script type="text/javascript" src="js/materialize.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="css/materialize.css" rel="stylesheet" type="text/css"></link>
+<link href="css/customize.css" rel="stylesheet" type="text/css"></link>
+
+</html>
