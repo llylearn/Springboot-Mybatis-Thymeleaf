@@ -31,7 +31,7 @@ public class AccountService implements HandlerInterceptor {
         return accountDao.checkAccoByUsername(username);
     }
     public void modifyPsw(Account account) { accountDao.modifyPsw(account);}
-
+//  对比输入的用户名和密码跟数据库的记录对比， 最后返回相应的url
     public void verifyIdentity(String username, String password, Map map){
         if (!"".equals(username)&& checkAccoExist(username)>0){
             Account account = getAccount(username);
@@ -50,7 +50,7 @@ public class AccountService implements HandlerInterceptor {
             map.put("url", "index");
         }
     }
-
+//    修改密码，首先获取输入的旧密码是否正确，如果正确，将密码设置为新的密码
     public void modifyPswAssisstant(Map map, Account account, String username, String newPsw){
         if ("success".equals(map.get("msg"))&&!"".equals(newPsw)){
             account.setUsername(username);
@@ -64,6 +64,7 @@ public class AccountService implements HandlerInterceptor {
 
 
     //Interceptor
+//    拦截器，如果没有登录过，直接跳转到登录页面
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Object user = request.getSession().getAttribute("username");

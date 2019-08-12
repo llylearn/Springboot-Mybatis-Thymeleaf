@@ -23,8 +23,7 @@ public class CommentService {
 //     删除对应的comment
     public void deleteComment(String topic){ commentDao.deleteComment(topic);
         System.out.println(topic);}
-//    修改对应的comment
-
+//    修改对应的comment(待实现)
 
 //    刷新页面，从新取回数据
     public void refreshPage(Map map, String username){

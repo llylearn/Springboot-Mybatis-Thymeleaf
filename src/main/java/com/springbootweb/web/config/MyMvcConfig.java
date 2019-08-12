@@ -17,7 +17,7 @@ public class MyMvcConfig implements WebMvcConfigurer{
             registry.addViewController("/index.html").setViewName("index");
             registry.addViewController("/main.html").setViewName("mainPage");
         }
-
+//      拦截器，直接访问某些地址会被拦截(如何解除静态资源被拦截问题有待解决)
         @Override
         public void addInterceptors(InterceptorRegistry registry){
             registry.addInterceptor(new AccountService()).addPathPatterns("/main.html");

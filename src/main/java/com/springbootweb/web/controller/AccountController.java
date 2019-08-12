@@ -30,7 +30,7 @@ public class AccountController  {
     AccountService accountService;
     @Autowired
     CommentService commentService;
-
+//  登录响应方法
     @PostMapping("/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password,
                         Map<String,Object> map,  HttpSession session){
@@ -39,12 +39,10 @@ public class AccountController  {
         if ("success".equals(map.get("msg"))){
             //if succeed, add user attribute to session
             session.setAttribute("username", username);
-            return (String)map.get("url");
         }
-
         return (String)map.get("url");
     }
-
+//  修改账号密码的响应方法
     @PostMapping("/modifyPsw")
     public String modifyPsw(@RequestParam("newPsw") String newPsw, @RequestParam("oldPsw") String oldPsw, Map<String, Object> map, Account account){
         String username = getSessionUsername();
@@ -52,7 +50,7 @@ public class AccountController  {
         accountService.modifyPswAssisstant(map, account, username, newPsw);
         return "mainPage";
     }
-
+//  获取session里面面的username属性的值
     public String getSessionUsername(){
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         return (String )request.getSession().getAttribute("username");

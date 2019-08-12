@@ -21,6 +21,7 @@ import java.util.Map;
 public class CommentController {
     @Autowired
     CommentService commentService;
+//    提交新的comment的响应方法
     @PostMapping("/submitComm")
     public String insertComment(Comment comment, Map<String, Object> map){
         //已经拿到session,就可以拿到session中保存的用户信息了。
@@ -30,7 +31,7 @@ public class CommentController {
         commentService.refreshPage(map, username);
         return "mainPage";
     }
-
+//  删除comment的响应方法
     @PostMapping("/deleteComment")
     public String deleteComment(@RequestParam("topic") String topic, Map<String, Object> map){
         commentService.deleteComment(topic);
@@ -39,7 +40,7 @@ public class CommentController {
         commentService.refreshPage(map, username);
         return "mainPage";
     }
-
+//  获取session里的username属性的值
     public String getSessionUsername(){
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         return (String )request.getSession().getAttribute("username");
